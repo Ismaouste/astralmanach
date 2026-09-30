@@ -5,6 +5,9 @@ its phase, the planets you could see and where, the eclipses, oppositions and me
 International Space Station, the fireballs that hit the atmosphere — and hands you a star map ready to draw, with the
 constellation figures and their names.
 
+> **Created for [Un art voulu voyant](https://www.uavv.fr), the art project of [Florian Rosinski](https://florianrosinski.fr).**
+> It computes the sky of *Observations*, the project's printable sheet of the sky; it was then published on its own, under the MIT licence.
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/carte-nuit.svg">

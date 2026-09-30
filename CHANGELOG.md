@@ -5,6 +5,11 @@ and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-01
+
+### Changed
+- The README and the npm description say where the library comes from: it was created for Florian Rosinski's art project *Un art voulu voyant* (uavv.fr).
+
 ## [0.2.0] - 2026-09-30
 
 ### Changed

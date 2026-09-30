@@ -1,7 +1,7 @@
 {
   "name": "astralmanach",
-  "version": "0.2.0",
-  "description": "The sky of an instant: civil time and time zones, sky events, ISS passes, fireballs, a ready-to-draw celestial vault, and plain-language summaries. No secrets, no disk, never throws.",
+  "version": "0.2.1",
+  "description": "Created for Florian Rosinski's art project Un art voulu voyant (uavv.fr). The sky of an instant: civil time and time zones, sky events, ISS passes, fireballs, a ready-to-draw celestial vault, and plain-language summaries. No secrets, no disk, never throws.",
   "keywords": [
     "astronomy",
     "ephemeris",
