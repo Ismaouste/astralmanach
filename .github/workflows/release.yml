@@ -26,6 +26,13 @@ jobs:
         run: test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
       - run: npm run check
       - run: npm run smoke
-      - run: npm publish --provenance --access public
+      - name: Already on npm?
+        id: published
+        run: |
+          if npm view "astralmanach@$(node -p "require('./package.json').version")" version >/dev/null 2>&1; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"; echo "This version is already on npm (published by hand): nothing to do."
+          fi
+      - if: steps.published.outputs.skip != 'true'
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

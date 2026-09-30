@@ -5,6 +5,8 @@ and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-30
+
 ### Changed
 - Published as compiled ESM with type declarations (`dist/`), built by tsup: no `transpilePackages` needed anymore.
 - A root entry point (`import { skyRecap } from "astralmanach"`) re-exports the most used functions and types.
@@ -19,5 +21,6 @@ and the project uses [Semantic Versioning](https://semver.org/).
   fetcher and the query runner with injected key, cache and User-Agent (`fetcher`, `run`), three sources (`skyEvents`,
   `issPasses`, `fireballs`), the celestial vault (`voute`: `skyAt`, `skyMap`) and `skyRecap`. Published as TypeScript source.
 
-[Unreleased]: https://github.com/Ismaouste/astralmanach/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Ismaouste/astralmanach/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Ismaouste/astralmanach/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Ismaouste/astralmanach/releases/tag/v0.1.0
