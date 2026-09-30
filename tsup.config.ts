@@ -19,7 +19,7 @@ export default defineConfig({
     "queries/jpl-fireball": "src/queries/jpl-fireball.ts",
   },
   format: ["esm"],
-  target: "node18",
+  target: "node20",
   platform: "neutral",
   dts: true,
   sourcemap: false,
