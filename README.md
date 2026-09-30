@@ -5,8 +5,19 @@ its phase, the planets you could see and where, the eclipses, oppositions and me
 International Space Station, the fireballs that hit the atmosphere — and hands you a star map ready to draw, with the
 constellation figures and their names.
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/carte-nuit.svg">
+    <img src="docs/carte-jour.svg" alt="A star map of Paris on 30 September 2026 at 19:00 UTC: stars, constellation lines, the ecliptic, drawn from astralmanach's data" width="440">
+  </picture>
+  <br>
+  <sub>Paris, 30 September 2026, 19:00 UTC — every point and line comes from <code>skyMap()</code>; the drawing is 60 lines of SVG: <a href="examples/carte-svg.mjs">examples/carte-svg.mjs</a></sub>
+</p>
+
 [![npm](https://img.shields.io/npm/v/astralmanach)](https://www.npmjs.com/package/astralmanach)
 [![CI](https://github.com/Ismaouste/astralmanach/actions/workflows/ci.yml/badge.svg)](https://github.com/Ismaouste/astralmanach/actions/workflows/ci.yml)
+[![types](https://img.shields.io/npm/types/astralmanach)](https://www.npmjs.com/package/astralmanach)
+[![node](https://img.shields.io/node/v/astralmanach)](package.json)
 [![license](https://img.shields.io/npm/l/astralmanach)](LICENSE)
 
 It is the engine of the Astralmanach tools (a birth chart, a day's sky, a "celestial certificate" of a date), released on
@@ -15,6 +26,15 @@ its own. ESM, typed, no build step needed on your side.
 ```sh
 npm install astralmanach
 ```
+
+## See it in use
+
+- **[astralmanach.vercel.app](https://astralmanach.vercel.app)** — three tools written with the library: a birth chart (*Thème*), a day's sky and archives (*Ciel*), and a "celestial certificate" that puts a date and a place into sentences (*Certificat*). Each source is credited with its licence on the [Sources](https://astralmanach.vercel.app/sources) page.
+- **[uavv.fr/observations](https://www.uavv.fr/observations)** — where it was born: *Observations*, a tool of the art project [Un art voulu voyant](https://www.uavv.fr) by [Florian Rosinski](https://florianrosinski.fr), composes a printable A4 sheet of the sky of a date, an hour and a place. The star map, the Moon and the planets on that sheet come from this library.
+
+## Where it comes from
+
+astralmanach started inside that project: the sheet needed the Moon, the planets, the stars that were up, the eclipses and the ISS passes, in shapes ready to draw. That computation became an engine of its own — civil time and IANA zones, sky events, the celestial vault, plain-language summaries — released here under the MIT licence so the tools above are just uses of the same package.
 
 ## What it does that the others don't
 
@@ -122,6 +142,7 @@ six days away from them (an old orbit would be wrong); `fireballs` reads NASA/JP
 npm install
 npm run check   # typecheck, lint, tests, build
 npm run smoke   # imports the built package the way a user would
+node examples/carte-svg.mjs   # redraws the star map above (after npm run build)
 ```
 
 Releases: bump the version and the [changelog](CHANGELOG.md), tag `vX.Y.Z`, push the tag — CI publishes to npm with

@@ -1,0 +1,16 @@
+name: Feature request
+description: A source, a computation, a language, an export you would like
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you want to be able to do
+      description: The use case first — what you are building.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: An idea of how it could look
+      description: An API sketch, a data source, a reference (with its licence, if it is data).

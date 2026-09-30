@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: See it in use
+    url: https://astralmanach.vercel.app
+    about: The three tools built on astralmanach (a birth chart, a day's sky, a certificate).
