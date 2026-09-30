@@ -1,0 +1,797 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "astralmanach — API publique",
+    "version": "1.0.0",
+    "summary": "Le ciel d'une date, d'une heure et d'un lieu, en données.",
+    "description": "Le ciel d'un instant en données : les positions des astres, les événements, les images, l'air, les séismes — une **source** par route, toutes derrière `/api/run`.\n\nSans compte et sans clé d'API : les clés des fournisseurs (NASA) sont portées par le serveur et caviardées dans les réponses.\n\nLes réponses complètes sont gardées (un jour dans le navigateur, un mois au CDN pour une date passée de plus de deux jours, une heure sinon) ; `nocache=1` les contourne.\n\nLe même moteur est publié en paquet npm : <https://www.npmjs.com/package/astralmanach> (MIT). Pour ses propres clés et ses propres limites, on l'utilise directement.",
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/Ismaouste/astralmanach/blob/main/LICENSE"
+    },
+    "contact": {
+      "name": "astralmanach",
+      "url": "https://github.com/Ismaouste/astralmanach"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://astralmanach.eu"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Sources",
+      "description": "Ce que l'API sait lire."
+    },
+    {
+      "name": "Ciel",
+      "description": "Interroger une source."
+    },
+    {
+      "name": "Lieux",
+      "description": "Trouver un lieu et son fuseau."
+    }
+  ],
+  "externalDocs": {
+    "description": "La documentation et les exemples",
+    "url": "https://astralmanach.eu/api-publique"
+  },
+  "paths": {
+    "/api/sources": {
+      "get": {
+        "operationId": "listerLesSources",
+        "tags": [
+          "Sources"
+        ],
+        "summary": "Les sources disponibles",
+        "description": "Le registre : pour chaque source, son identifiant (à passer en `query` de /api/run), ce qu'elle lit, sa couverture.",
+        "responses": {
+          "200": {
+            "description": "La liste.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "sources"
+                  ],
+                  "properties": {
+                    "sources": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Source"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/run": {
+      "get": {
+        "operationId": "interrogerUneSource",
+        "tags": [
+          "Ciel"
+        ],
+        "summary": "Interroger une source pour une date",
+        "description": "Lance une source pour une date (et une heure, un lieu). Le résultat est une liste de **cartes** prêtes à afficher, avec la réponse brute du fournisseur. Les sources « locales » (météo, horizon, visible, satellite, ISS) rendent `empty` sans lieu.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "description": "L'identifiant d'une source (voir /api/sources).",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "local.theme",
+                "jpl.horizons",
+                "jpl.visible",
+                "usno.horizon",
+                "astro.evenements",
+                "jpl.cometes",
+                "tsd.lancements",
+                "celestrak.iss",
+                "nasa.exoplanetes",
+                "meteo.jour",
+                "meteo.climat",
+                "meteo.air",
+                "cnrs.pfas",
+                "georisques.commune",
+                "gallica.presse",
+                "nasa.gibs",
+                "usgs.seismes",
+                "local.tarot",
+                "local.naissance",
+                "local.jyotish",
+                "local.mesoamerique",
+                "local.calendriers",
+                "local.jours",
+                "nasa.apod",
+                "nasa.epic",
+                "nasa.images",
+                "nasa.donki.flr",
+                "nasa.donki.cme",
+                "nasa.donki.gst",
+                "nasa.donki.notifications",
+                "nasa.neo",
+                "jpl.cad",
+                "jpl.fireball",
+                "wikimedia.onthisday"
+              ]
+            },
+            "example": "jpl.horizons"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": true,
+            "description": "La date civile, `AAAA-MM-JJ`.",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "example": "2026-09-30"
+            }
+          },
+          {
+            "name": "time",
+            "in": "query",
+            "description": "L'heure locale, `HH:MM` ; sans elle, midi.",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{2}:\\d{2}$"
+            },
+            "example": "21:00"
+          },
+          {
+            "name": "tz",
+            "in": "query",
+            "description": "Le fuseau IANA de l'heure (défaut : celui du lieu, sinon Europe/Paris).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Europe/Paris"
+          },
+          {
+            "name": "window",
+            "in": "query",
+            "description": "Une fenêtre de jours autour de la date (0 à 30).",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 30,
+              "default": 0
+            }
+          },
+          {
+            "name": "nocache",
+            "in": "query",
+            "description": "`1` : ne pas lire le cache.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1"
+              ]
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude en degrés (−90 à 90). Les sources qui en ont besoin la demandent avec `lon`.",
+            "schema": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "example": 48.8566
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "Longitude en degrés (−180 à 180, est positif).",
+            "schema": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "example": 2.3522
+          },
+          {
+            "name": "place",
+            "in": "query",
+            "description": "Le nom du lieu (120 signes au plus), repris dans les cartes.",
+            "schema": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "example": "Paris"
+          },
+          {
+            "name": "ptz",
+            "in": "query",
+            "description": "Le fuseau horaire IANA du lieu. Sert à lire `time` quand `tz` n'est pas donné.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Europe/Paris"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Le résultat, quel que soit son `status`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resultat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Une date ou un paramètre invalide.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Une source inconnue.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/geocode": {
+      "get": {
+        "operationId": "trouverUnLieu",
+        "tags": [
+          "Lieux"
+        ],
+        "summary": "Chercher un lieu",
+        "description": "Les lieux qui portent ce nom (Open-Meteo Geocoding, base GeoNames), avec leur fuseau horaire : de quoi remplir `lat`, `lon`, `place` et `ptz`.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Au moins deux signes.",
+            "schema": {
+              "type": "string",
+              "minLength": 2
+            },
+            "example": "Lyon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Les lieux candidats (vide si `q` est trop court).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "hits"
+                  ],
+                  "properties": {
+                    "hits": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Lieu"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Le service de lieux n'a pas répondu.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/today": {
+      "get": {
+        "operationId": "leCielDAujourdhui",
+        "tags": [
+          "Ciel"
+        ],
+        "summary": "Le ciel d'aujourd'hui, en bref",
+        "description": "Le Soleil et la Lune du jour, la dernière image de la Terre, l'arcane du jour, l'année chinoise, ce qui vient dans le ciel : ce que montre l'accueil.",
+        "responses": {
+          "200": {
+            "description": "Le résumé du jour.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Erreur": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "Source": {
+        "type": "object",
+        "required": [
+          "id",
+          "fournisseur",
+          "label",
+          "hint",
+          "granularite",
+          "famille",
+          "replie",
+          "cle",
+          "couverture"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "L'identifiant, à passer en `query` de /api/run.",
+            "example": "jpl.horizons"
+          },
+          "fournisseur": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Ce que la source lit, en une phrase."
+          },
+          "granularite": {
+            "type": "string",
+            "description": "Ce que la source sait dire : un jour, une fenêtre, un instant, une année."
+          },
+          "famille": {
+            "type": "string",
+            "enum": [
+              "ciel",
+              "autre"
+            ],
+            "description": "« ciel » : l'astronomie d'abord ; « autre » : météo, sol, monde."
+          },
+          "replie": {
+            "type": "boolean",
+            "description": "Replié par défaut sur le site : ce qui n'est pas directement du jour."
+          },
+          "cle": {
+            "type": "boolean",
+            "description": "Vrai si la source passe par une clé (NASA). C'est le serveur qui la porte : l'appelant n'a rien à fournir."
+          },
+          "couverture": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "description": "Les dates que la source couvre ; hors de cette plage, /api/run répond `out-of-coverage`."
+          }
+        }
+      },
+      "Quand": {
+        "type": "object",
+        "required": [
+          "utc",
+          "local"
+        ],
+        "properties": {
+          "utc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "local": {
+            "type": "string"
+          }
+        }
+      },
+      "Lien": {
+        "type": "object",
+        "required": [
+          "label",
+          "href"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      },
+      "Fait": {
+        "type": "array",
+        "description": "[libellé, valeur, lien?, aide?]",
+        "minItems": 2,
+        "maxItems": 4,
+        "items": {
+          "type": "string"
+        }
+      },
+      "CarteImage": {
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "src"
+        ],
+        "properties": {
+          "kind": {
+            "const": "image"
+          },
+          "title": {
+            "type": "string"
+          },
+          "src": {
+            "type": "string"
+          },
+          "full": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "when": {
+            "$ref": "#/components/schemas/Quand"
+          },
+          "credit": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Lien"
+            }
+          }
+        }
+      },
+      "CarteVideo": {
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "embed"
+        ],
+        "properties": {
+          "kind": {
+            "const": "video"
+          },
+          "title": {
+            "type": "string"
+          },
+          "embed": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "when": {
+            "$ref": "#/components/schemas/Quand"
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      },
+      "CarteEvenement": {
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "facts"
+        ],
+        "properties": {
+          "kind": {
+            "const": "event"
+          },
+          "title": {
+            "type": "string"
+          },
+          "facts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Fait"
+            }
+          },
+          "body": {
+            "type": "string"
+          },
+          "when": {
+            "$ref": "#/components/schemas/Quand"
+          },
+          "href": {
+            "type": "string"
+          },
+          "emphasis": {
+            "type": "boolean",
+            "description": "Une carte rare, à mettre en avant."
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Lien"
+            }
+          }
+        }
+      },
+      "CarteTableau": {
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "columns",
+          "rows"
+        ],
+        "properties": {
+          "kind": {
+            "const": "table"
+          },
+          "title": {
+            "type": "string"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": [
+                  "string",
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      },
+      "CarteTexte": {
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "body"
+        ],
+        "properties": {
+          "kind": {
+            "const": "text"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "when": {
+            "$ref": "#/components/schemas/Quand"
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      },
+      "CarteFigure": {
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "svg"
+        ],
+        "properties": {
+          "kind": {
+            "const": "chart"
+          },
+          "title": {
+            "type": "string"
+          },
+          "svg": {
+            "type": "string",
+            "description": "Un SVG autonome."
+          },
+          "note": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          }
+        }
+      },
+      "Carte": {
+        "description": "Une carte : le résultat mis en forme, prêt à afficher. Le champ `kind` dit laquelle.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CarteImage"
+          },
+          {
+            "$ref": "#/components/schemas/CarteVideo"
+          },
+          {
+            "$ref": "#/components/schemas/CarteEvenement"
+          },
+          {
+            "$ref": "#/components/schemas/CarteTableau"
+          },
+          {
+            "$ref": "#/components/schemas/CarteTexte"
+          },
+          {
+            "$ref": "#/components/schemas/CarteFigure"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind",
+          "mapping": {
+            "image": "#/components/schemas/CarteImage",
+            "video": "#/components/schemas/CarteVideo",
+            "event": "#/components/schemas/CarteEvenement",
+            "table": "#/components/schemas/CarteTableau",
+            "text": "#/components/schemas/CarteTexte",
+            "chart": "#/components/schemas/CarteFigure"
+          }
+        }
+      },
+      "Resultat": {
+        "type": "object",
+        "required": [
+          "queryId",
+          "status",
+          "cards",
+          "raw",
+          "requests",
+          "totalMs"
+        ],
+        "properties": {
+          "queryId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "empty",
+              "error",
+              "out-of-coverage",
+              "timeout"
+            ],
+            "description": "`empty` : la source n'a rien pour cette date ; `out-of-coverage` : la date sort de sa couverture (`message` le dit)."
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Carte"
+            }
+          },
+          "raw": {
+            "type": "array",
+            "items": {},
+            "description": "La réponse brute du fournisseur, plafonnée à 100 Ko (la clé y est caviardée)."
+          },
+          "requests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "ms": {
+                  "type": "number"
+                },
+                "fromCache": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "message": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "totalMs": {
+            "type": "number"
+          }
+        }
+      },
+      "Lieu": {
+        "type": "object",
+        "required": [
+          "name",
+          "label",
+          "lat",
+          "lon"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "description": "Nom, région, pays."
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lon": {
+            "type": "number"
+          },
+          "tz": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "string"
+          },
+          "population": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

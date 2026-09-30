@@ -1,0 +1,1934 @@
+{
+  "info": {
+    "name": "astralmanach — API publique",
+    "description": "Le ciel d'une date, d'une heure et d'un lieu, en données. Sans compte ni clé. La description complète : https://astralmanach.eu/api/openapi.json — la documentation : https://astralmanach.eu/api-publique",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://astralmanach.eu"
+    },
+    {
+      "key": "date",
+      "value": "2026-09-30"
+    },
+    {
+      "key": "time",
+      "value": "21:00"
+    },
+    {
+      "key": "lat",
+      "value": "48.8566"
+    },
+    {
+      "key": "lon",
+      "value": "2.3522"
+    },
+    {
+      "key": "place",
+      "value": "Paris"
+    },
+    {
+      "key": "ptz",
+      "value": "Europe/Paris"
+    }
+  ],
+  "item": [
+    {
+      "name": "Le ciel",
+      "item": [
+        {
+          "name": "Thème astral",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le ciel à la minute de la naissance, vu de la Terre ; l'heure et le lieu donnent l'Ascendant et les maisons.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=local.theme&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "local.theme"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Le ciel à cet instant",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Où étaient le Soleil, la Lune et les planètes : signe du zodiaque, constellation, phase de la Lune. Calculé, donc toujours disponible.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=jpl.horizons&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "jpl.horizons"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Visible à l'œil nu",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Depuis le lieu, à l'heure donnée : quelles planètes étaient au-dessus de l'horizon, où, et si la nuit était assez noire pour les voir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=jpl.visible&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "jpl.visible"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Sur l'horizon",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "À quelle heure le Soleil et la Lune se sont levés et couchés au lieu choisi, et la phase de la Lune.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=usno.horizon&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "usno.horizon"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les événements du ciel",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Éclipses, phases exactes, solstices et équinoxes, périgée et apogée de la Lune, oppositions, conjonctions, plus grandes élongations, transits, pluies d'étoiles filantes — calculés ici, pour toute date.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=astro.evenements&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "astro.evenements"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les comètes de passage",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les comètes passées à moins d'une unité astronomique de la Terre dans le mois autour de la date, d'après le catalogue des passages proches du JPL.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=jpl.cometes&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "jpl.cometes"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Lancements et vols habités",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les lancements de fusées ce jour-là (mission, lanceur, base, succès ou échec) et les événements du vol habité : amarrages, sorties dans l'espace, atterrissages. Depuis Spoutnik.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=tsd.lancements&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "tsd.lancements"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "La Station spatiale internationale",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Ses passages visibles depuis le lieu ce jour-là : heure, hauteur, direction. Calculable seulement à quelques jours d'aujourd'hui.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=celestrak.iss&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "celestrak.iss"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les exoplanètes découvertes cette année-là",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les planètes d'autres étoiles annoncées l'année de la date : combien, lesquelles, par quelle méthode, depuis quel observatoire. L'archive date à l'année.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.exoplanetes&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.exoplanetes"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Tirage de trois arcanes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Un tirage, pas un calcul : son hasard est fixé par la date, l'heure et le lieu. Les mêmes lames à chaque visite ; une autre minute, un autre tirage.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=local.tarot&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "local.tarot"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ce que la date porte",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "La seule date de naissance, lue par trois traditions : sa carte de tarot (les chiffres de la date additionnés), le chemin de vie, l'animal et l'élément chinois.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=local.naissance&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "local.naissance"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Le ciel lu en Inde",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le Jyotish : les mêmes astres, dans le zodiaque sidéral (les constellations d'aujourd'hui, selon l'ayanamsa de Lahiri) ; la Lune et son nakshatra d'abord.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=local.jyotish&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "local.jyotish"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les comptes mésoaméricains",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le jour de naissance dans le compte de 260 jours : le Tzolk'in maya, que les gardiens des jours du Guatemala lisent encore, et le tonalpohualli des Mexicas.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=local.mesoamerique&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "local.mesoamerique"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les calendriers du monde",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le même jour dans treize calendriers, chacun compté depuis l'événement qui le fonde : le grégorien en est un.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=local.calendriers&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "local.calendriers"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Le jour de naissance, de Java au Ghana",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le jour lui-même, tel que le lisent Java (le weton), Bali (le pawukon), la Birmanie, la Thaïlande et les Akan du Ghana.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=local.jours&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "local.jours"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Image astronomique du jour",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "L'image (parfois une vidéo) que la NASA a choisie ce jour-là, avec son commentaire.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.apod&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.apod"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "La Terre vue de loin",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le disque terrestre entier, photographié depuis 1,5 million de km, toutes les heures ou presque.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.epic&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.epic"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Médiathèque NASA",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Photos et vidéos d'archives de cette année-là ; celles datées du jour exact sont mises en avant.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.images&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.images"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Éruptions solaires",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Chaque éruption avec son heure de pic, sa classe (C, M, X) et la région active d'origine.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.donki.flr&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.donki.flr"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Éjections de masse coronale",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les nuages de plasma lancés par le Soleil : heure de départ, vitesse, direction.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.donki.cme&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.donki.cme"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Tempêtes géomagnétiques",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les jours où le champ magnétique terrestre a été secoué : indice Kp, jusqu'à 9.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.donki.gst&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.donki.gst"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bulletins de météo spatiale",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les alertes textuelles émises par le centre de prévision, telles qu'envoyées ce jour-là.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.donki.notifications&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.donki.notifications"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Géocroiseurs du jour",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les astéroïdes passés au plus près de la Terre, avec l'heure, la distance et la taille estimée.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.neo&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.neo"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Passages proches (catalogue complet)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Tous les astéroïdes passés à moins de 0,05 UA, y compris ceux découverts des décennies plus tard.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=jpl.cad&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "jpl.cad"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Astéroïdes et météores",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les petits astéroïdes entrés dans l'atmosphère, vus comme des météores très lumineux : heure, lieu, énergie libérée.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=jpl.fireball&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "jpl.fireball"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Autour : météo, sol, monde",
+      "item": [
+        {
+          "name": "Le temps qu'il faisait",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Températures, pluie, vent, durée du jour au lieu choisi, d'après la réanalyse ERA5 (depuis 1940).",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=meteo.jour&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "meteo.jour"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Le jour, vu du climat",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le jour comparé à sa normale 1991-2020 au même endroit : canicule, nuit tropicale, gel, grêle, tempête, déluge — avec les seuils.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=meteo.climat&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "meteo.climat"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "L'air ce jour-là",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Particules, dioxyde d'azote, ozone, indice européen (depuis 2013), UV et pollens (depuis 2022), au lieu choisi, d'après la réanalyse CAMS de Copernicus.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=meteo.air&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "meteo.air"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les PFAS les plus proches",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Autour du lieu, à 30 km : la source de polluants éternels la plus proche (usine, aéroport, site militaire, décharge…) et les mesures les plus fortes. Europe. La carte d'aujourd'hui, pas celle du jour demandé.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=cnrs.pfas&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "cnrs.pfas"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les risques autour",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Ce que l'État sait des risques de la commune (inondation, séisme, radon, sols pollués…) et les installations classées à 10 km, avec leur statut Seveso. France.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=georisques.commune&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "georisques.commune"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "La presse locale du jour",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les journaux parus ce jour-là dans le département, leur une en image : Gallica, la bibliothèque numérique de la BnF. Surtout de 1870 à 1944 ; France.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=gallica.presse&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "gallica.presse"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Vu du satellite",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "L'image en vraies couleurs du satellite Terra ce jour-là : le lieu choisi à 250 m par pixel, ou la Terre entière.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=nasa.gibs&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "nasa.gibs"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "La Terre a tremblé",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les séismes de magnitude 5 et plus dans le monde ce jour-là ; près du lieu choisi, dès 2,5.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=usgs.seismes&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "usgs.seismes"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ce jour-là, sur Wikipédia",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Événements, naissances et décès survenus un même jour du calendrier ; ceux de l'année exacte passent en tête.",
+            "url": {
+              "raw": "{{baseUrl}}/api/run?query=wikimedia.onthisday&date={{date}}&time={{time}}&lat={{lat}}&lon={{lon}}&place={{place}}&ptz={{ptz}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "run"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "wikimedia.onthisday"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                },
+                {
+                  "key": "time",
+                  "value": "{{time}}"
+                },
+                {
+                  "key": "lat",
+                  "value": "{{lat}}"
+                },
+                {
+                  "key": "lon",
+                  "value": "{{lon}}"
+                },
+                {
+                  "key": "place",
+                  "value": "{{place}}"
+                },
+                {
+                  "key": "ptz",
+                  "value": "{{ptz}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lieux et sources",
+      "item": [
+        {
+          "name": "Chercher un lieu",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Les lieux qui portent ce nom, avec leur fuseau : de quoi remplir lat, lon, place et ptz.",
+            "url": {
+              "raw": "{{baseUrl}}/api/geocode?q=Lyon",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "geocode"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Lyon"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Les sources",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le registre : identifiant, fournisseur, couverture.",
+            "url": {
+              "raw": "{{baseUrl}}/api/sources?",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "sources"
+              ],
+              "query": []
+            }
+          }
+        },
+        {
+          "name": "Le ciel d'aujourd'hui",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "description": "Le Soleil, la Lune et ce qui vient.",
+            "url": {
+              "raw": "{{baseUrl}}/api/today?",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "today"
+              ],
+              "query": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

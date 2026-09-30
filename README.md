@@ -29,8 +29,18 @@ npm install astralmanach
 
 ## See it in use
 
-- **[astralmanach.vercel.app](https://astralmanach.vercel.app)** — three tools written with the library: a birth chart (*Thème*), a day's sky and archives (*Ciel*), and a "celestial certificate" that puts a date and a place into sentences (*Certificat*). Each source is credited with its licence on the [Sources](https://astralmanach.vercel.app/sources) page.
+- **[astralmanach.eu](https://astralmanach.eu)** — three tools written with the library: a birth chart (*Thème*), a day's sky and archives (*Ciel*), and a "celestial certificate" that puts a date and a place into sentences (*Certificat*). Each source is credited with its licence on the [Sources](https://astralmanach.vercel.app/sources) page.
 - **[uavv.fr/observations](https://www.uavv.fr/observations)** — where it was born: *Observations*, a tool of the art project [Un art voulu voyant](https://www.uavv.fr) by [Florian Rosinski](https://florianrosinski.fr), composes a printable A4 sheet of the sky of a date, an hour and a place. The star map, the Moon and the planets on that sheet come from this library.
+
+## Try it without installing
+
+The site serves a read-only HTTP API on the same engine: no account, no key, CORS open. [Documentation](https://astralmanach.eu/api-publique) ·
+[OpenAPI 3.1](docs/api/openapi.json) · [Swagger UI](https://petstore.swagger.io/?url=https%3A%2F%2Fastralmanach.eu%2Fapi%2Fopenapi.json) ·
+[Postman collection](docs/api/astralmanach.postman_collection.json) · [which keys and sign-ups you need to run it yourself](docs/api/README.md#keys-and-sign-ups--what-you-need-to-run-the-library-yourself).
+
+```sh
+curl "https://astralmanach.eu/api/run?query=jpl.horizons&date=2026-09-30&time=21:00&lat=48.8566&lon=2.3522&place=Paris&ptz=Europe%2FParis"
+```
 
 ## Where it comes from
 
