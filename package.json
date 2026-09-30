@@ -1,0 +1,124 @@
+{
+  "name": "astralmanach",
+  "version": "0.1.0",
+  "description": "The sky of an instant: civil time and time zones, sky events, ISS passes, fireballs, a ready-to-draw celestial vault, and plain-language summaries. No secrets, no disk, never throws.",
+  "keywords": [
+    "astronomy",
+    "ephemeris",
+    "sky",
+    "star-map",
+    "constellations",
+    "iss",
+    "sgp4",
+    "fireballs",
+    "eclipses",
+    "meteor-showers",
+    "almanac",
+    "time-zones"
+  ],
+  "author": "Ismaël Rodmacq",
+  "license": "MIT",
+  "homepage": "https://github.com/Ismaouste/astralmanach#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ismaouste/astralmanach.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ismaouste/astralmanach/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./time": {
+      "types": "./dist/time.d.ts",
+      "import": "./dist/time.js"
+    },
+    "./cards": {
+      "types": "./dist/cards.d.ts",
+      "import": "./dist/cards.js"
+    },
+    "./lieu": {
+      "types": "./dist/lieu.d.ts",
+      "import": "./dist/lieu.js"
+    },
+    "./raw": {
+      "types": "./dist/raw.d.ts",
+      "import": "./dist/raw.js"
+    },
+    "./fetcher": {
+      "types": "./dist/fetcher.d.ts",
+      "import": "./dist/fetcher.js"
+    },
+    "./run": {
+      "types": "./dist/run.d.ts",
+      "import": "./dist/run.js"
+    },
+    "./voute": {
+      "types": "./dist/voute.d.ts",
+      "import": "./dist/voute.js"
+    },
+    "./sky-recap": {
+      "types": "./dist/sky-recap.d.ts",
+      "import": "./dist/sky-recap.js"
+    },
+    "./queries/types": {
+      "types": "./dist/queries/types.d.ts",
+      "import": "./dist/queries/types.js"
+    },
+    "./queries/shared": {
+      "types": "./dist/queries/shared.d.ts",
+      "import": "./dist/queries/shared.js"
+    },
+    "./queries/astro-evenements": {
+      "types": "./dist/queries/astro-evenements.d.ts",
+      "import": "./dist/queries/astro-evenements.js"
+    },
+    "./queries/celestrak-iss": {
+      "types": "./dist/queries/celestrak-iss.d.ts",
+      "import": "./dist/queries/celestrak-iss.js"
+    },
+    "./queries/jpl-fireball": {
+      "types": "./dist/queries/jpl-fireball.d.ts",
+      "import": "./dist/queries/jpl-fireball.js"
+    },
+    "./data/*": "./data/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "prepublishOnly": "npm run check",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "astronomy-engine": "^2.1.19",
+    "satellite.js": "^5.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
+    "@types/node": "^26.6.3",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.2"
+  }
+}
